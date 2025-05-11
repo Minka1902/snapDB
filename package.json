@@ -1,0 +1,15 @@
+{
+  "name": "snapdb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv-for-you": "^1.0.80",
+    "snapsrv4u": "^0.0.1"
+  }
+}
