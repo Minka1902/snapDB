@@ -11,7 +11,7 @@ const parseOptions = {
     returnAsString: ['id'],
 };
 
-class MockDB {
+class SnapDB {
     constructor(dbName = "DATABASE") {
         this.dbPath = path.join(process.cwd(), dbName);
         if (!fs.existsSync(this.dbPath)) {
@@ -100,24 +100,28 @@ class MockDB {
                 else reject('No such record');
             });
         } else {
-            const collections = await this.getCollectionNames();
-            for (const collection of collections) {
-                const records = await csv.parse(this.getCollectionPath(collection), parseOptions);
-                const requestedItem = records.find(record => record.id === id)
-                if (requestedItem) return requestedItem;
-                else return 'No such record';
-            }
+            return new Promise(async (resolve, reject) => {
+                const collections = await this.getCollectionNames();
+                for (const collection of collections) {
+                    const records = await csv.parse(this.getCollectionPath(collection), parseOptions);
+                    const requestedItem = records.find(record => record.id === id)
+                    if (requestedItem) resolve(requestedItem);
+                }
+                reject('No such record');
+            });
         }
     }
 
     async deleteById(id, collectionName = '') {
         if (collectionName !== '') {
             return new Promise(async (resolve, reject) => {
-                const filePath = this.getCollectionPath(collectionName);
-                const records = await csv.parse(filePath, parseOptions);
+                const collectionPath = this.getCollectionPath(collectionName);
+                const records = await csv.parse(collectionPath, parseOptions);
                 const requestedItemIndex = records.findIndex((record) => record.id === id)
-                const response = requestedItemIndex !== -1 && await csv.deleteRows(filePath, { rowNumber: requestedItemIndex + 1 })
-                if (response?.success) resolve(requestedItem);
+                if (requestedItemIndex !== -1) {
+                    csv.deleteRows(collectionPath, { rowNumber: requestedItemIndex + 1, rowsToDelete: 1, reportToConsole: false });
+                    resolve({ message: `Item was successfully deleted from collection '${collectionName}'`, itemId: id });
+                }
                 else reject('No such record');
             });
         } else {
@@ -126,10 +130,10 @@ class MockDB {
                 for (const collection of collections) {
                     const collectionPath = this.getCollectionPath(collection);
                     const records = await csv.parse(collectionPath, parseOptions);
-                    const requestedItem = records.findIndex(obj => obj.id === id)
-                    if (requestedItem !== -1 && requestedItem !== 0) {
-                        csv.deleteRows(collectionPath, { rowNumber: requestedItem + 1, rowsToDelete: 1 });
-                        resolve(`Item with this <${id}> ID was successfully deleted`)
+                    const requestedItemIndex = records.findIndex(obj => obj.id === id)
+                    if (requestedItemIndex !== -1) {
+                        csv.deleteRows(collectionPath, { rowNumber: requestedItemIndex + 1, rowsToDelete: 1, reportToConsole: false });
+                        resolve({ message: `Item was successfully deleted from collection '${collectionName}'`, itemId: id });
                     }
                     else reject('No such record');
                 }
@@ -157,4 +161,4 @@ class MockDB {
     }
 }
 
-module.exports = MockDB;
+module.exports = SnapDB;
