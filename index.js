@@ -1,3 +1,3 @@
-const { MockDB } = require('./database/database.js');
+const SnapDB = require('./database/database.js');
 
-module.exports = { MockDB };
+module.exports = SnapDB;
