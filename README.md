@@ -1,9 +1,9 @@
-# SnapDB
-SnapDB is a lightweight, file-based mock database built on top of the csv-for-you library. It stores collections as individual CSV files, making it ideal for quick prototyping, small-scale apps, and local development without requiring a full database setup.
+# Snap4DB
+Snap4DB is a lightweight, file-based mock database built on top of the csv-for-you library. It stores collections as individual CSV files, making it ideal for quick prototyping, small-scale apps, and local development without requiring a full database setup.
 
 📦 Installation
 ```bash
-npm install snapdb
+npm install snap4db
 ```
 
 ## 🛠️ Features
@@ -16,7 +16,7 @@ npm install snapdb
 ## 📚 Usage
 ### Initialize Database
 ```js
-const MockDB = require('snapdb');
+const MockDB = require('snap4db');
 const db = new SnapDB(); // defaults to "DATABASE" folder
 ```
 
