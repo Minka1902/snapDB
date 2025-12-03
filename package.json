@@ -1,15 +1,54 @@
 {
   "name": "snap4db",
-  "version": "1.0.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "Lightweight CSV-backed file database with caching, QueryBuilder, and TypeScript types.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "types": "./index.d.ts"
+    },
+    "./lib/*": "./lib/*"
   },
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "test": "echo \"No tests yet\"",
+    "prepublishOnly": "npm run test"
+  },
+  "author": "Minka1902",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Minka1902/snapDB.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Minka1902/snapDB/issues"
+  },
+  "homepage": "https://github.com/Minka1902/snapDB#readme",
+  "keywords": [
+    "snap4db",
+    "database",
+    "file",
+    "file-based",
+    "mock",
+    "lightweight",
+    "query",
+    "query-builder",
+    "typescript",
+    "javascript",
+    "csv"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "files": [
+    "lib",
+    "index.js",
+    "index.d.ts",
+    "README.md"
+  ],
+  "sideEffects": false,
   "dependencies": {
-    "csv-for-you": "^1.1.0",
-    "snapsrv4u": "^0.0.1"
+    "csv-for-you": "^1.1.0"
   }
 }
