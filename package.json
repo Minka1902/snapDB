@@ -49,6 +49,6 @@
   ],
   "sideEffects": false,
   "dependencies": {
-    "csv-for-you": "^1.1.0"
+    "csv-for-you": "^2.0.0"
   }
 }
