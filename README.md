@@ -82,7 +82,7 @@ const older: User[] = await db
   .execute();
 
 // Errors
-import { RecordNotFoundError } from 'snap4db/lib/errors';
+import { RecordNotFoundError } from 'snap4db/errors';
 
 try {
   await db.findById<User>('nonexistent', 'users');
@@ -598,8 +598,10 @@ f6e5d4c3b2a1,jane_smith,jane@example.com,32
 
 ## 🧪 Dependencies
 
-- `csv-for-you` - CSV parsing and manipulation
-- `crypto` - ID generation (Node.js built-in)
+snap4db has **no runtime dependencies**. It uses only Node.js built-ins:
+
+- `fs` / `fs.promises` - File storage and atomic CSV reads/writes
+- `crypto` - ID generation
 
 ## 🎯 Use Cases
 

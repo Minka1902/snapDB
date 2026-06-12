@@ -81,7 +81,7 @@ declare module 'snap4db/lib/QueryBuilder' {
   export = QB;
 }
 
-declare module 'snap4db/lib/errors' {
+declare module 'snap4db/errors' {
   class DatabaseError extends Error {
     code: string;
     timestamp: string;

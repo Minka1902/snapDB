@@ -9,6 +9,7 @@
       "require": "./index.js",
       "types": "./index.d.ts"
     },
+    "./errors": "./errors/index.js",
     "./lib/*": "./lib/*"
   },
   "scripts": {
@@ -43,12 +44,10 @@
   },
   "files": [
     "lib",
+    "errors",
     "index.js",
     "index.d.ts",
     "README.md"
   ],
-  "sideEffects": false,
-  "dependencies": {
-    "csv-for-you": "^2.0.0"
-  }
+  "sideEffects": false
 }
